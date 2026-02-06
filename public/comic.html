@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Комикс</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffe1e1, #fff7d9);
+    }
+
+    /* Надпись сверху */
+    .title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      text-shadow: 1px 1px 2px #fff;
+      margin: 20px 0 10px;
+    }
+    footer {
+  margin-top: 40px;
+  font-size: 13px;
+  color: #54595d;
+  border-top: 1px solid #a2a9b1;
+  padding-top: 10px;
+  padding: 15px;
+}
+
+    /* Контейнер для изображения */
+    .image-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .image-container img {
+      max-width: 90%;
+      max-height: 80vh; /* почти весь экран */
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      display: block;
+    }
+
+    /* Панель кнопок */
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      color: white;
+    }
+
+    button#prev { background: #ff6b6b; }
+    button#next { background: #4ecdc4; }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    #counter {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      padding: 8px 16px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Надпись сверху -->
+  <div class="title" id="slideTitle"> 1-бет</div>
+
+  <!-- Картинка -->
+  <div class="image-container">
+    <img id="viewer" src="images/1.png" alt="Комикс">
+  </div>
+
+  <!-- Кнопки и счетчик -->
+  <div class="controls">
+    <button id="prev" onclick="prev()">← Артқы бетке қайту </button>
+    <span id="counter">1 / 5</span>
+    <button id="next" onclick="next()"> Келесі бетке өту →</button>
+  </div>
+
+  <script>
+    const total = 5; // количество PNG-файлов
+    let page = 1;
+
+    const viewer = document.getElementById('viewer');
+    const counter = document.getElementById('counter');
+    const slideTitle = document.getElementById('slideTitle');
+
+    function update() {
+      viewer.src = `images/${page}.png`;
+      counter.textContent = `${page} / ${total}`;
+      slideTitle.textContent = `${page}-бет`;
+    }
+
+    function next() {
+      if (page < total) { page++; update(); }
+    }
+
+    function prev() {
+      if (page > 1) { page--; update(); }
+    }
+  </script>
+<footer>
+Материалдар қазақ эпосы негізінде берілген.  
+</footer>
+
+</body>
+</html>
